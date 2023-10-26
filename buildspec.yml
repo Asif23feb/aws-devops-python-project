@@ -8,7 +8,7 @@ env:
 phases:
   install:
     runtime-versions:
-       python: 3.10
+       python: 3.11
   pre_build:
     commands:
        - echo "Logging in to Docker Hub..."
@@ -20,6 +20,7 @@ phases:
        - cd sample-python-app/
        - echo "Building Docker Image"
        - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $IMAGE_REPO_NAME:$IMAGE_TAG
   post_build:
     commands:
        - echo "Pushing the Docker Image..."
