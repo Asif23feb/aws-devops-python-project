@@ -28,4 +28,4 @@ phases:
     commands:
 	     - echo "Pushing the Docker Image..."
        - docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG 
-	     - echo "Build is Successfull"
+	     - echo "Build is Successfull..."
