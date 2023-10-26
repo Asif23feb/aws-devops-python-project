@@ -23,9 +23,9 @@ phases:
        - cd sample-python-app/
        - echo "Building Docker Image"
        - docker build -t $IMAGE_NAME:$IMAGE_TAG .
-       - docker tag $IMAGE_NAME:$IMAGE_TAG $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG 
+       - docker tag $IMAGE_NAME:$IMAGE_TAG $IMAGE_NAME:$IMAGE_TAG 
   post_build:
     commands:
        - echo "Pushing the Docker Image..."
-       - docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG 
+       - docker push $IMAGE_NAME:$IMAGE_TAG 
        - echo "Build is Successfull..."
