@@ -3,7 +3,7 @@ version: 0.2
 env:
   variables:
      IMAGE_NAME: "python_app"
-	   IMAGE_TAG: "latest"
+     IMAGE_TAG: "latest"
   parameter-store:
       DOCKER_USERNAME: /myapp/docker-credentials/username
       DOCKER_PASSWORD: /myapp/docker-credentials/password
@@ -14,18 +14,18 @@ phases:
        python: 3.8
   pre_build:
     commands:
-	     - echo "Logging in to Docker Hub..."
-	     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-	     - echo "Installing dependencies..."
+       - echo "Logging in to Docker Hub..."
+       - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+       - echo "Installing dependencies..."
        - pip install -r sample-python-app/requirements.txt
   build:
     commands:
        - cd sample-python-app/
        - echo "Building Docker Image"
        - docker build -t $IMAGE_NAME:$IMAGE_TAG .
-	     - docker tag $IMAGE_NAME:$IMAGE_TAG $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG 
+       - docker tag $IMAGE_NAME:$IMAGE_TAG $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG 
   post_build:
     commands:
-	     - echo "Pushing the Docker Image..."
+       - echo "Pushing the Docker Image..."
        - docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG 
-	     - echo "Build is Successfull..."
+       - echo "Build is Successfull..."
