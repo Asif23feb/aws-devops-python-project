@@ -27,3 +27,6 @@ phases:
        - echo "Pushing the Docker Image..."
        - docker push $DOCKER_USERNAME/$IMAGE_REPO_NAME:$IMAGE_TAG 
        - echo "Build is Successfull..."
+artifacts:
+  files:
+    - '**/*'      
