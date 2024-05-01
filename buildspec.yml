@@ -1,6 +1,9 @@
 version: 0.2
 
 env:
+  variables:
+    IMAGE_REPO_NAME: "python_app"
+    IMAGE_TAG: "v1"
   parameter-store:
       DOCKER_USERNAME: /myapp/docker-credentials/username
       DOCKER_PASSWORD: /myapp/docker-credentials/password
@@ -11,6 +14,7 @@ phases:
        python: 3.11
   pre_build:
     commands:
+    # In the pre-build phase we are going to login to the docker hub to validate the user and install the dependencies flask app which is necessary to run our python app
        - echo "Logging in to Docker Hub..."
        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin "$DOCKER_URL"
        - echo "Installing dependencies..."
@@ -19,13 +23,14 @@ phases:
     commands:
        - cd sample-python-app/
        - echo "Building Docker Image"
-       - docker build -t python_app:latest .
-       - docker tag python_app $DOCKER_USERNAME/python_app:latest
+       # we are getting the values for the variable IMAGE_REPO_NAME & IMAGE_TAG which we mention above.
+       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+       - docker tag $IMAGE_REPO_NAME $DOCKER_USERNAME/$IMAGE_REPO_NAME:$IMAGE_TAG
        - docker images
   post_build:
     commands:
        - echo "Pushing the Docker Image..."
-       - docker push $DOCKER_USERNAME/python_app:latest
+       - docker push $DOCKER_USERNAME/$IMAGE_REPO_NAME:$IMAGE_TAG 
        - echo "Build is Successfull..."
       
 artifacts:
