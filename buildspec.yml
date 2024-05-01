@@ -3,7 +3,7 @@ version: 0.2
 env:
   variables:
     IMAGE_REPO_NAME: "python_app"
-    IMAGE_TAG: "v1"
+    IMAGE_TAG: "latest"
   parameter-store:
       DOCKER_USERNAME: /myapp/docker-credentials/username
       DOCKER_PASSWORD: /myapp/docker-credentials/password
