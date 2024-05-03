@@ -22,4 +22,4 @@ EXPOSE 5000
 # ENV MY_ENV_VAR=value
 
 # Run the Flask application
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "run:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app.py"]
