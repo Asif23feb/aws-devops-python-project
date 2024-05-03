@@ -11,7 +11,7 @@ env:
 phases:
   install:
     runtime-versions:
-       python: 3.11
+       python: 3.10
   pre_build:
     commands:
     # In the pre-build phase we are going to login to the docker hub to validate the user and install the dependencies flask app which is necessary to run our python app
