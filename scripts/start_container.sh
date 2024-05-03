@@ -5,5 +5,5 @@ set -e
 docker pull asif9720/python_app
 
 # Run the Docker image as a container
-docker run -d -p 8000:8000 asif9720/python_app
+docker run -d -p 80:5000 asif9720/python_app
 
